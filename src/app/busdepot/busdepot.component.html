@@ -1,0 +1,93 @@
+<div class="row sm">
+  <h1>Buse Depot</h1>
+</div>
+<hr>
+<div class="row">
+  <div class="form-group row">
+    <label for="Depot Name" class="col-sm-1 col-form-label">Depot Name</label>
+    <select class="col-sm-4 sme">
+      <option>All</option>
+      <option>Ammerpet</option>
+      <option>KPHB</option>
+    </select>
+	</div> 
+</div>
+<div class="col-md-4 bttn">
+      <button style="background-color:  royalblue ;text-align: center;color: white" (click)="showDialog = !showDialog" class="btn">Add Depot</button>
+</div>
+<app-dialog [(visible)]="showDialog">
+        <div id="loginbox" style="margin-top:50px;margin-left: 1px; width: 100%;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Add Bus</div>                        
+                    </div>     
+
+                    <div style="padding-top:30px" class="panel-body" >
+
+                      <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+                      <form  role="form" #store="ngForm"   (ngSubmit)= "AddBus(store)">
+                          <div style="margin-bottom: 25px;text-align: left;" class="form-group">
+                                 <label>bus No</label>   
+                                  <input  type="text" class="form-control" name="busNo" #busNo="ngModel" ngModel placeholder="busNo">                           
+                          </div>
+                          <div style="margin-bottom: 25px;text-align: left;" class="form-group">
+                                 <label>Service No</label>   
+                                  <input  type="text" class="form-control" name="serviceNo" #serviceNo="ngModel" ngModel placeholder="serviceNo">                           
+                          </div>       
+                          <div style="margin-bottom: 25px;text-align: left;" class="form-group">
+                                 <label>Bus Depot</label>   
+                                    <input id="login-username" type="text" class="form-control" name="busDepot" #busDepot="ngModel" ngModel placeholder="depoName">                                        
+                            </div>
+                          <div style="margin-bottom: 25px;text-align: left;" class="form-group">
+                                 <label>Bus Type</label>   
+                              <select  class="form-control" name="busType" #busType="ngModel" ngModel>
+                                <option>Ordinary</option>
+                                 <option>express</option>
+                              </select>                                        
+                            </div>
+                          <div style="margin-bottom: 25px;text-align: left;" class="form-group">
+                                 <label>Device Id</label>   
+                                    <input type="text" class="form-control" name="deviceId" #deviceId="ngModel" ngModel placeholder="depoName">                                        
+                            </div>            
+                          <div style="margin-bottom: 25px;text-align: left;" class="form-group">
+                                 <label>Playlist</label>   
+                            <select  class="form-control" name="playList"   #playList="ngModel" ngModel>
+                                          <option>KPHB</option>
+                                          <option>AmeerpetPlaylist</option>
+                                          <option>Depo1 Playlist</option>
+                                          <option>Depo2 Playlist</option>
+                                    </select>                                        
+                            </div>
+                                <div style="margin-top:10px" class="form-group">
+                                    <div class="col-sm-12 controls">
+                                        <input type="submit"  value="Submit" class="btn btn-success">
+                                        <input type="Reset"  value="Reset" class="btn btn-danger">
+                                    </div>
+                                </div>
+                        </form>     
+                    </div>                     
+                </div><hr> 
+          <div class="row">
+              <button (click)="showDialog = !showDialog" class="btn">Close</button>
+            </div>
+          </div>
+</app-dialog>
+
+
+<table>
+  <thead>
+      <th>Bus Name</th>
+      <th>Address</th>
+      <th>PlayList File</th>
+      <th>Manoj</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

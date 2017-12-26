@@ -1,0 +1,58 @@
+<nav class="navbar1 ">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav pull-left">
+      <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Config <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/audiofiles">Audio Files</a></li>
+                <li><a routerLink="/playlist-files">PlayList Files</a></li>
+                <li><a routerLink="/buses">Buses</a></li>
+                <li><a routerLink="/busdepos">Bus Depot</a></li>
+            <!--     <li><a (click) ="playCon()">Palying Hours Config</a></li> -->
+              </ul>
+            </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Publish <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/buspublish">Buses</a></li>
+                <li><a routerLink="/busdepotpublish">BusDepot</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/playauditsummery">Playlist Audit Summery</a></li>
+                <li><a routerLink="/playauditlist">Play Audit List</a></li>
+              </ul>
+            </li>
+           <li class = "sme">
+              <i class="fa fa-power-off fa-2x" aria-hidden="true" (click) = "logout()"></i>
+            </li>
+            
+        </ul>
+  </div>
+</nav> 
+  <router-outlet></router-outlet>
+<div class="row rw">
+	<h2>Play Audit Summery</h2>
+</div>
+<hr>
+<div class="container">
+<table class="table table-responsive ">
+	<thead>
+		<tr>
+			<th>S.No.</th>
+			<th>Audio File</th>
+			<th>Played Summery</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor= "let stres of alldepot | paginate: { itemsPerPage: 10, currentPage: p } ; let i=index ">
+			<td>{{i+1+(p-1)*10}}</td>
+			<td>{{stres.fileName}}</td>
+			<td>{{stres.playedCount}}</td>
+		</tr>
+	</tbody>
+</table>
+<pagination-controls  (pageChange)="p = $event" ></pagination-controls>
+</div>

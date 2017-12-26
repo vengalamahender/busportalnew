@@ -1,0 +1,75 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+th{
+    background-color: royalblue;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.rw h2{
+	       margin-left: 30px;
+        margin-top: 10px;
+    margin-bottom: -10px;
+}
+.container{
+	text-align: center;
+    margin-left: 460px;
+    width: 50%;
+}
+
+hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-bottom: 2px solid #dddddd;
+}
+.navbar1{
+  margin-top: -20px;
+  background-color:  gainsboro;
+}
+.navbar1 a{
+ color:darkblue;
+ text-align: left;
+ font-size: 15px;
+  margin-top: 0px;
+  color: black;
+}
+.navbar1 a:hover{
+ color:darkblue;
+
+}
+
+.navbar-collapse.collapse {
+    display: block!important;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
+      margin-top: -20px;
+  background-color:  gainsboro;
+}
+.sme i{
+     margin-left: 1415px;
+         padding-top: 10px;
+}
+body {
+    margin: 30px 0px;
+}
+.navbar-default .navbar-nav > li.dropdown:hover > a, 
+.navbar-default .navbar-nav > li.dropdown:hover > a:hover,
+.navbar-default .navbar-nav > li.dropdown:hover > a:focus {
+    background-color: rgb(231, 231, 231);
+    color: rgb(85, 85, 85);
+}
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}

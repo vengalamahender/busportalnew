@@ -3,6 +3,10 @@
   "project": {
     "name": "busportal"
   },
+  "styles": [
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+      ],
   "apps": [
     {
       "root": "src",

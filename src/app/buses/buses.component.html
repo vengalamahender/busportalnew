@@ -1,0 +1,269 @@
+<nav class="navbar1 ">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav pull-left">
+      <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Config <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/audiofiles">Audio Files</a></li>
+                <li><a routerLink="/playlist-files">PlayList Files</a></li>
+                <li><a routerLink="/buses">Buses</a></li>
+                <li><a routerLink="/busdepos">Bus Depot</a></li>
+              <!--   <li><a (click) ="playCon()">Palying Hours Config</a></li> -->
+              </ul>
+            </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Publish <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/buspublish">Buses</a></li>
+                <li><a routerLink="/busdepotpublish">BusDepot</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+            <!--     <li><a routerLink="/playauditsummery">Playlist Audit Summery</a></li> -->
+                <li><a routerLink="/playauditlist">Play Audit List</a></li>
+              </ul>
+            </li>
+            <li class = "sme">
+              <i class="fa fa-power-off fa-2x" aria-hidden="true" (click) = "logout()"></i>
+            </li>
+            
+        </ul>
+  </div>
+</nav> 
+  <router-outlet></router-outlet>
+<div class="row sm">
+  <h1>Buses</h1>
+</div>
+<hr>
+<div class="row stile">
+  <div class="col-md-4">
+    <label>Search</label>
+    <input type="text" [(ngModel)]="term">
+  </div>
+    <div class="col-md-1">
+<i class="fa fa-plus-square fa-2x" aria-hidden="true"  data-toggle="modal" 
+      (click)="getbusDepot()" (click)="getplaylist()"
+       data-target="#addbusmodal"></i>
+  </div>
+</div>
+<!-- <div class="row stile">
+  <div class="col-md-4">
+    <label>Search</label>
+    <input type="text" [(ngModel)]="term">
+  </div>
+</div>
+  <div class="col-md-4 bttn">
+      <input type="button" name="Add PlayList" value="Add Bus" data-toggle="modal" 
+      (click)="getbusDepot()" (click)="getplaylist()"
+       data-target="#addbusmodal">
+  </div> -->
+<div class="container">
+<table class="table table-responsive">
+<thead>
+    <th>BusNumber</th>
+    <th>ServiceNo.</th>
+    <th>DeviceId</th>
+    <th>BusDepot</th>
+    <th>BusType</th>
+    <th>PlaylistFiles</th>
+    <th>Action</th>
+</thead>
+<tbody>
+  <tr *ngFor = "let buses of busdata  | filter:term">
+    <td>{{buses.busNo}}</td>
+    <td>{{buses.serviceNo}}</td>
+    <td>{{buses.deviceId}}</td>
+    <td>{{buses.busDepotName}}</td>
+    <td>{{buses.busType}}</td>
+    <td>{{buses.playListName}}</td>
+<td> <i class=" fa  fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#editbusmodal" (click) = "editBus(buses)" (click)="getplaylist()" ></i>
+    <i class="fa fa-trash fa-2x" aria-hidden="true" (click) = "deleteBus(buses)" ></i></td>
+  </tr>
+</tbody>
+</table>
+</div>
+<div class="modal fade" id="addbusmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Bus</h5>
+      </div>
+        <div class="modal-body">
+            <form  role="form" #bus="ngForm">
+            <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Bus No</label>
+                <div class="col-sm-9">
+                    <input  type="text" class="form-control" name="busNo" [(ngModel)] = "name"  placeholder="busNo" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Service No</label>
+                <div class="col-sm-9">
+                    <input  type="text" class="form-control" name="serviceNo"  [(ngModel)] = "serviceNo" placeholder="serviceNo" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Bus Depot</label>
+                <div class="col-sm-9">
+                    <select [(ngModel)]="selectedValue" class="form-control" [ngModelOptions]="{standalone: true}">
+                      <option>Select depot Name</option>
+                      <option *ngFor="let c of alldepot" [ngValue]="c">{{c.depotName}}</option>
+                    </select>
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Bus type</label>
+                <div class="col-sm-9">
+                    <select  class="form-control" name="busType" [(ngModel)]="busType" [ngModelOptions]="{standalone: true}">
+                        <option>Ordinary</option>
+                        <option>express</option>
+                    </select>          
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label" >Device Id</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="deviceId" [(ngModel)]="deviceId" placeholder="deviceId" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="playlist file" class="col-sm-3 control-label" >PlayList </label>
+                <div class="col-sm-9">
+                    <select [(ngModel)]="playlistname" class="form-control" [ngModelOptions]="{standalone: true}">
+                       <option>Select PlayList</option>
+                      <option *ngFor="let c of playlist" [ngValue]="c">{{c.pFileName}}</option>
+                    </select>
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Playing Hours</label>
+                <div class="col-sm-9">
+                  <select class="form-control">
+                    <option>Play_Hours_5AM_10PM</option>
+                  </select>
+                    <!-- <input  type="text" class="form-control" name="Hours"  [(ngModel)] = "Hours" placeholder="Monitoring Hours" [ngModelOptions]="{standalone: true}"> -->
+                </div>
+            </div><br><br>
+            <button type="submit" value="Submit" class="btn btn-primary" data-dismiss="modal" (click)= "AddBus()">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </form>
+        </div>
+      <div class="modal-footer">
+        
+
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editbusmodal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Bus</h5>
+      </div>
+        <div class="modal-body">
+                      <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Bus No</label>
+                <div class="col-sm-9">
+                     <input type="text" [disabled]="this.busno?.busNo"  class="form-control" [ngModel]='this.busno?.busNo' />
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Service No</label>
+                <div class="col-sm-9">
+                    <input type="text" [disabled]="this.busno?.serviceNo" class="form-control" [ngModel]='this.busno?.serviceNo'/>
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Bus Depot</label>
+                <div class="col-sm-9">
+                    <input type="text" [disabled]="this.busno?.busDepotId" class="form-control" [ngModel]='this.busno?.busDepotId'/>
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Bus type</label>
+                <div class="col-sm-9">
+                    <input type="text" [disabled]="this.busno?.busType" class="form-control" [ngModel]='this.busno?.busType'/>          
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label" >Device Id</label>
+                <div class="col-sm-9">
+                    <input type="text" [disabled]="this.busno?.deviceId" class="form-control" [ngModel]='this.busno?.deviceId'/> 
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="playlist file" class="col-sm-3 control-label" >PlayList </label>
+                <div class="col-sm-9">
+                    <select [(ngModel)]="playlistname" class="form-control" [ngModelOptions]="{standalone: true}">
+                      <option *ngFor="let c of playlist" [ngValue]="c">{{c.pFileName}}</option>
+                    </select>
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Playing Hours</label>
+                <div class="col-sm-9">
+                  <select class="form-control" >
+                    <option>Play_Hours_5AM_10PM</option>
+                  </select>
+                    <!-- <input  type="text" class="form-control" name="Hours"  [(ngModel)] = "Hours" placeholder="Monitoring Hours" [ngModelOptions]="{standalone: true}"> -->
+                </div>
+            </div><br><br>
+           <!--  <button type="submit" value="Submit" class="btn btn-primary" data-dismiss="modal" (click)= "AddBus()">Save</button> -->
+        
+         <!--  <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Bus No</label>
+                <div class="col-sm-9">
+                    <input type="text" [ngModel]='this.busno?.busNo' />
+                </div>
+            </div><br><br>
+          <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Service No</label>
+                <div class="col-sm-9">
+                   <input type="text" [ngModel]='this.busno?.serviceNo'/>
+                </div>
+            </div><br><br>
+          <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Bus Type</label>
+                <div class="col-sm-9">
+                     <input type="text" [ngModel]='this.busno?.busType'/>
+                </div>
+            </div><br><br>
+          <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Device Id</label>
+                <div class="col-sm-9">
+                   <input type="text" [ngModel]='this.busno?.deviceId'/>
+                </div>
+            </div><br><br> -->
+<!--           <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Bus No</label>
+                <div class="col-sm-9">
+                     <input type="text" [ngModel]='this.busno?.busNo'/>
+                </div>
+            </div><br><br> -->
+<!--           <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Bus No</label>
+                <div class="col-sm-9">
+                    <input  type="text" class="form-control" name="busNo" [(ngModel)] = "name"  placeholder="busNo" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div><br><br> -->
+            </div>
+       
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+       </div>
+    </div>
+  </div>
+

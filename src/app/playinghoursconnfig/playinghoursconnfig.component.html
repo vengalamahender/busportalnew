@@ -1,0 +1,201 @@
+<nav class="navbar1 ">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav pull-left">
+      <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Config <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/audiofiles">Audio Files</a></li>
+                <li><a routerLink="/playlist-files">PlayList Files</a></li>
+                <li><a routerLink="/buses">Buses</a></li>
+                <li><a routerLink="/busdepos">Bus Depot</a></li>
+                <!-- <li><a (click) ="playCon()">Palying Hours Config</a></li> -->
+              </ul>
+            </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Publish <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/buspublish">Buses</a></li>
+                <li><a routerLink="/busdepotpublish">BusDepot</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/playauditsummery">Playlist Audit Summery</a></li>
+                <li><a routerLink="/playauditlist">Play Audit List</a></li>
+              </ul>
+            </li>
+            <li class = "sme">
+              <i class="fa fa-power-off fa-2x" aria-hidden="true" (click) = "logout()"></i>
+            </li>
+            
+        </ul>
+  </div>
+</nav> 
+  <router-outlet></router-outlet>
+
+
+<div class="container">
+  	<div class="jumbotron">
+  		<div class="row play">
+				<input type="button" name="" value="ADD" data-toggle="modal" data-target="#listModal">
+		</div>
+  		<table class="table table-responsive ">
+  			<thead>
+  				<th>Name</th>
+  				<th>Monitoring</th>
+  				<th>Additional Monitoring Hours</th>
+  				<th>More</th>
+  			</thead>
+  			<tbody>
+  				<tr>
+  					<td>Mon_hours_night</td>
+  					<td>00:00 AM - 06:00 AM and 21:00 PM - 23:59 PM Mon through Sun (IST)</td>
+  					<td>24 hours on Mon through Sun (IST)</td>
+  					<td>edit , delete</td>
+  					
+  				</tr>
+
+  			</tbody>
+  		</table>
+	</div>
+</div>
+
+
+<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                <h5 class="modal-title" id="exampleModalLabel">Add Monitorting Hours</h5>
+      </div>
+        <div class="modal-body">
+        	<div class="container">
+	            <div class="form-group">
+	             <label for="busname" class="col-sm-5 control-label">Name</label>
+	                <div class="col-sm-7">
+	                    <input type="text"  [(ngModel)]="item1" class="form-control"  name="busname1">
+	                </div>
+	            </div><br><br>
+	            <div class="form-group">
+	             <label for="busname" class="col-sm-5 control-label">Monitoring Hours</label>
+	                <div class="col-sm-7">
+	                    <input type="text"  [(ngModel)]="item2" class="form-control"  name="busname2">
+	                </div>
+	            </div><br><br>
+	            <div class="form-group">
+	             <label for="busname" class="col-sm-5 control-label">Advance Monitoring Hours</label>
+	                <div class="col-sm-7">
+	                    <input type="text"  [(ngModel)]="item3" class="form-control"  name="busname3">
+	                </div>
+	            </div>
+       		</div>
+            <br><br>
+            <div class="row ">
+            	<div class="col-sm-2 ">
+            		<button class="button apply" (click)="getDetails(busname)">Apply</button>           		
+            	</div>
+            </div><br>
+            <div class="row rw" >
+            		<h5>Configure Monitoring Information</h5>
+            </div><br>
+            <div class="row ">
+            	<div class="col-sm-6 left  ">
+            		<label class="sum">No Monitoring</label>
+            		<input type="checkbox" [checked]="item" (change)="item=!item"  >
+            	</div>
+            	 <div class="col-sm-6 right">
+            	 	 <div class="form-group">
+            		<label for="busname" class="col-sm-1 control-label">TimeZone</label>
+            		<div class="col-sm-5">
+	                  <select class=" form-control">
+		                  	<option>IST</option>
+		                  	<option>CT</option>
+		                  	<option>ET</option>
+		                  	<option>MT</option>
+	                  </select>
+	                </div>
+	              </div>
+            	</div>
+      		</div><br>
+ <table class=" table-condensed">
+    <tr>
+        <td rowspan="2">Monitoring Day</td>
+        <td colspan="2">AM Schedule</td>
+        <td colspan="2">PM Schedule</td>
+        <td rowspan="2">24 Hours</td>
+    </tr>
+    <tr>
+    	<td>Start</td>
+        <td>Stop</td>
+        <td>Start</td>
+        <td>Stop</td>
+    </tr>
+    <tr>
+    	<td>MONDAY <input type="checkbox" [(ngModel)]="monday" value="monday"></td>
+    	<td><ngb-timepicker [(ngModel)]="time1"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time2"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time3"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time4"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><input type="checkbox" name=""></td>
+    </tr>
+        <tr>
+    	<td>TUESDAY<input type="checkbox" name=""></td>
+    	<td><ngb-timepicker [(ngModel)]="time5"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time6"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time7"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time8"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><input type="checkbox" name=""></td>
+    </tr>
+        <tr>
+    	<td>WEDNESSDAY<input type="checkbox" name=""></td>
+    	<td><ngb-timepicker [(ngModel)]="time9"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time10"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time11"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time12"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><input type="checkbox" name=""></td>
+    </tr>
+        <tr>
+    	<td>THURSDAY<input type="checkbox" name=""></td>
+    	<td><ngb-timepicker [(ngModel)]="time13"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time14"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time15"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time16"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><input type="checkbox" name=""></td>
+    </tr>
+        <tr>
+    	<td>FRIDAY<input type="checkbox" name=""></td>
+    	<td><ngb-timepicker [(ngModel)]="time17"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time18"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time19"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time20"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><input type="checkbox" name=""></td>
+    </tr>
+        <tr>
+    	<td>SATURDAY<input type="checkbox" name=""></td>
+    	<td><ngb-timepicker [(ngModel)]="time21"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time22"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time23"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time24"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><input type="checkbox" name=""></td>
+    </tr>
+        <tr>
+    	<td>SUNDAY<input type="checkbox" name=""></td>
+    	<td><ngb-timepicker [(ngModel)]="time25"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time26"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time27"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><ngb-timepicker [(ngModel)]="time28"  [meridian]="meridian"></ngb-timepicker></td>
+    	<td><input type="checkbox" name=""></td>
+    </tr>
+</table>
+        </div>
+      <div class="modal-footer">
+      	<button class="button apply">Update</button> 
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+       </div>
+
+  </div>
+

@@ -1,0 +1,119 @@
+<nav class="navbar1 ">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav pull-left">
+      <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Config <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/audiofiles">Audio Files</a></li>
+                <li><a routerLink="/playlist-files">PlayList Files</a></li>
+                <li><a routerLink="/buses">Buses</a></li>
+                <li><a routerLink="/busdepos">Bus Depot</a></li>
+               <!--  <li><a (click) ="playCon()">Palying Hours Config</a></li> -->
+              </ul>
+            </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Publish <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a routerLink="/buspublish">Buses</a></li>
+                <li><a routerLink="/busdepotpublish">BusDepot</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+            <!--     <li><a routerLink="/playauditsummery">Playlist Audit Summery</a></li> -->
+                <li><a routerLink="/playauditlist">Play Audit List</a></li>
+              </ul>
+            </li>
+            <li class = "sme">
+              <i class="fa fa-power-off fa-2x" aria-hidden="true" (click) = "logout()"></i>
+            </li>
+            
+        </ul>
+  </div>
+</nav> 
+  <router-outlet></router-outlet>
+
+<div class="row rw1">
+	<h2>Bus Depots Publish</h2>
+</div>
+<hr>
+<div class="row stile">
+  <div class="col-md-4">
+    <label>Search</label>
+    <input type="text" [(ngModel)]="term">
+  </div>
+    <div class="col-md-1">
+<!-- <i class="fa fa-plus-square fa-2x" aria-hidden="true"  data-toggle="modal" 
+      (click) = "getPlaylist()" data-target="#playlistmodal"></i> -->
+  </div>
+</div>
+<!--   <div class="col-md-1 bttn">
+      <input type="button" name="Add PlayList" value="Add PlayList" data-toggle="modal" 
+      (click) = "getPlaylist()" data-target="#playlistmodal">
+  </div>
+ -->
+<div class="container">
+<table class="table table-responsive ">
+	<thead>
+		<tr>
+			<th>S.No.</th>
+			<th>DepotName</th>
+			<th>Address</th>
+			<th>PlayListFile</th>
+			<th>Publish</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor= "let stres of store| paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
+      <td>{{i+1+(p-1)*10}}</td>
+      <td>{{stres.depotName}}</td>
+      <td>{{stres.depotAddress}}</td>
+      <td>{{stres.playListName}}</td>
+			<td><i class="fa fa-cloud-upload fa-2x" aria-hidden="true" (click) = "uploadDepotdata(stres)"></i></td>
+		</tr>
+	</tbody>
+</table>
+<pagination-controls  (pageChange)="p = $event" ></pagination-controls>
+</div>
+
+<div class="modal fade" id="playlistmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                <h5 class="modal-title" id="exampleModalLabel">Add New BusDepot</h5>
+      </div>
+        <div class="modal-body">
+            <div class="form-group">
+             <label for="busname" class="col-sm-3 control-label">Bus Name</label>
+                <div class="col-sm-9">
+                    <input type="text"  [(ngModel)]="busname" class="form-control"  name="busname">
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="address" class="col-sm-3 control-label">Address</label>
+                <div class="col-sm-9">
+                    <input type="text" [(ngModel)]="address"  class="form-control"  name="address">
+                </div>
+            </div><br><br>
+            <div class="form-group">
+             <label for="playlist file" class="col-sm-3 control-label">PlayList File</label>
+                <div class="col-sm-9">
+                    <select [(ngModel)]="selectedValue" class="form-control">
+                      <option *ngFor="let c of playlist" [ngValue]="c">{{c.pFileName}}</option>
+                    </select>
+                </div>
+            </div><br><br>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click) = 'addBusDepot(ioc)'>Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>

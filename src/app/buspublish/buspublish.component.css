@@ -1,0 +1,94 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+th{
+    background-color: royalblue;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.stile{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 1px;
+}
+
+.bttn{
+
+    margin-left: 1688px;
+}
+.pb h2{
+       margin-left: 30px;
+        margin-top: 10px;
+    margin-bottom: -10px;
+}
+hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-bottom: 2px solid #dddddd;
+}
+.container {
+    width: 1360px;
+}
+.stile i{
+    margin-left: 838px;
+    background-color: royalblue;
+    color: white;
+}
+.stile{
+    padding: 5px;
+    margin-bottom: 7px;
+    margin-left: 247px;
+    margin-right: 248px;
+    background-color: gainsboro;
+}
+.navbar1{
+  margin-top: -20px;
+  background-color:  gainsboro;
+}
+.navbar1 a{
+ color:darkblue;
+ text-align: left;
+ font-size: 15px;
+  margin-top: 0px;
+  color: black;
+}
+.navbar1 a:hover{
+ color:darkblue;
+
+}
+
+.navbar-collapse.collapse {
+    display: block!important;
+    height: auto!important;
+    padding-bottom: 0;
+    overflow: visible!important;
+      margin-top: -20px;
+  background-color:  gainsboro;
+}
+.sme i{
+     margin-left: 1415px;
+         padding-top: 10px;
+}
+body {
+    margin: 30px 0px;
+}
+.navbar-default .navbar-nav > li.dropdown:hover > a, 
+.navbar-default .navbar-nav > li.dropdown:hover > a:hover,
+.navbar-default .navbar-nav > li.dropdown:hover > a:focus {
+    background-color: rgb(231, 231, 231);
+    color: rgb(85, 85, 85);
+}
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}

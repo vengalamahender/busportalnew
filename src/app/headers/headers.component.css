@@ -1,8 +1,3 @@
-#fullpage {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 .navbar{
   margin-top: 0px;
   background-color:  royalblue;
@@ -51,29 +46,4 @@
     overflow: visible!important;
       margin-top: -20px;
   background-color:  gainsboro;
-}
-.navbar-nav h1{
-    text-align: center;
-    margin-left: 616px;
-}
-.navbar-header {
-    float: left;
-    /* padding: 19px; */
-    padding-bottom: 25px;
-  }
-  .navbar-collapse.collapse[_ngcontent-c0] {
-    display: block!important;
-    height: auto!important;
-    padding-bottom: 0;
-    overflow: visible!important;
-    margin-top: -20px;
-    background-color: royalblue;
-}
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color: white;
-    background-color: royalblue;
-
-}
-.navbar-default .navbar-nav>li>a {
-    color: white;
 }
