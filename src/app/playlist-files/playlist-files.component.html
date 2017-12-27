@@ -66,8 +66,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let game of songslist | filter:filter | paginate: { itemsPerPage: 10, currentPage: p } ; let i=index ">
-          <td>{{i+1+(p-1)*10}}</td>
+        <tr *ngFor="let game of songslist | filter:filter ; let i=index ">
+          <td>{{i+1}}</td>
           <td>{{game.pFileName}}</td>
           <td>
             <i class=" fa  fa-pencil-square-o fa-2x"  aria-hidden="true" data-toggle="modal" 
@@ -78,7 +78,7 @@
       </tbody>
      
     </table>
-     <pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!--      <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
 </div>
  
@@ -92,23 +92,24 @@
                 <h5 class="modal-title" id="exampleModalLabel">Add Songs & Publish</h5>
       </div>
         <div class="modal-body">
-<div class="row">
+<div class="row rw">
   <label class="col-sm-6">Create Play List Name</label>
   <div class="col-sm-6">
     <input type="text" name="playlistname" class="form-control"[(ngModel)]="playlist">
   </div>
 </div><br><br>
-<div class="row">
+<div class="row rw2">
     <div class="col-sm-6">
         <div class="panel panel-warning"
             dnd-sortable-container [sortableData]="sourceList" [dropZones]="['source-dropZone']">
             <div class="panel-heading">Source List</div>
             <div class="panel-body">
                 <ul class="list-group">
-                    <li *ngFor="let source of sourceList; let x = index" class="list-group-item"
+                    <li *ngFor="let source of sourceList | paginate: { itemsPerPage: 10, currentPage: p }; let x = index" class="list-group-item"
                         dnd-sortable [sortableIndex]="x" [dragEnabled]="true"
-                        [dragData]="source">{{source.fileName}}</li>
+                        [dragData]="source">{{x+1+(p-1)*10}}-{{source.fileName}}</li>
                 </ul>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
         </div>
     </div>

@@ -30,7 +30,8 @@ alldepot:any;
         format: 'medium',
         defaultOpen: true
     }
-
+date1:any;
+date2:any;
     dateTime(){
 
       console.log(this.date1);

@@ -31,6 +31,8 @@ import { PlayauditlistComponent } from './playauditlist/playauditlist.component'
 import { LoginformComponent } from './loginform/loginform.component';
 import { BusComponent } from './bus/bus.component';
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import * as $ from "jquery";
+
 
 /*const appRoutes: Routes = [
   { path: 'audiofiles', component: AudiofilesComponent },
